@@ -14,13 +14,14 @@ export default function useDice() {
         var resistance = Math.random()
 
         //roll for each individual die
-        for (let current_die = 0, die_result = 0; current_die < amount; current_die++, spin_velocity = 1, resistance = Math.random()) {
+        for (let current_die = 0; current_die < amount; current_die++, spin_velocity = 1, resistance = Math.random()) {
             //randomly choose an initial position for the die, even if it is not a whole number
             let current_side = Math.random() * sides + 1
             console.log("Die #: " + current_die + "\nCurrent Side: " + current_side)
             console.log("Current Velocity: " + spin_velocity)
             console.log("Current Resistance: " + resistance)
             //start spinning the die
+            /** -----------------------TRY SWITCHING TO FOR LOOP INSTEAD------------------- */
             while (spin_velocity > 0) {
                 //spinning by changing the sides according to the set spin_velocity
                 //important to know that this is NOT how a real die spins.
@@ -40,8 +41,7 @@ export default function useDice() {
             console.log("Current Velocity: " + spin_velocity)
             console.log("Current Resistance: " + resistance)
             //round the current_side for the die to land on, just in case it's spun more than half-way to another side
-            die_result = Math.round(current_side)
-            result.value += die_result
+            result.value += Math.round(current_side)
         }
     }
 
