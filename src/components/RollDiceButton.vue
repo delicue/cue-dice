@@ -18,14 +18,14 @@ let { result, each_result, roll, roll_history } = useDice()
             <div class="rounded p-4 m-2 bg-gray-100 text-black content-center">
                 <label for="diceAmount" class="text-black">
                     <h2>Amount of Dice</h2>
+                    <input min="1" class="bg-white text-center" id="diceAmount" name="diceAmount" type="number" v-model="dice_amount">
                 </label>
-                <input class="bg-white text-center" id="diceAmount" name="diceAmount" type="number" v-model="dice_amount">
             </div>
             <div class="rounded p-4 m-2 bg-gray-100 text-black content-center">
                 <label for="diceAmount" class="text-black">
                     <h2>Sides</h2>
+                    <input min="2" class="bg-white text-center" id="sides" name="sides" type="number" v-model="sides">
                 </label>
-                <input class="bg-white text-center" id="sides" name="sides" type="number" v-model="sides">
             </div>
             <button
                 class=" bg-slate-700 hover:bg-transparent active:bg-white active:text-gray-50 px-4 py-2 shadow border-2 rounded"
