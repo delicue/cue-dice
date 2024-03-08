@@ -2,8 +2,8 @@ import { ref } from "vue"
 
 export default function useDice() {
     let result = ref<number>()
-    let each_result = ref<Array<number>>([])
-    let roll_history = ref<Array<Object>>([])
+    let each_result = ref<number[]>([])
+    let roll_history = ref<Object[]>([])
     let id = 0
 
     let roll = async (amount: number, sides: number, speed: number = 1) => {

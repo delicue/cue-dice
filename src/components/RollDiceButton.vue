@@ -2,6 +2,7 @@
 import { ref, reactive, computed } from 'vue';
 import useDice from '../composables/useDice';
 import RollHistory from './RollHistory.vue';
+import rollRecords from './data/rollRecords.json';
 
 const dice_amount = ref(1)
 const sides = ref(6)
@@ -10,7 +11,6 @@ const speed = ref(1)
 let { result, each_result, roll, roll_history } = useDice()
 
 </script>
-
 
 <template>
     <div class="rounded justify-items-stretch">
@@ -46,5 +46,8 @@ let { result, each_result, roll, roll_history } = useDice()
         <RollHistory :records="roll_history">
             <template #title>Roll History</template>
         </RollHistory>
+        <div>
+            {{ rollRecords.map((record) => record) }}
+        </div>
     </div>
 </template>
