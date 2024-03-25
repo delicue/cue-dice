@@ -1,12 +1,9 @@
 <script setup>
-import RollDiceButton from './components/RollDiceButton.vue';
-
-
+import DiceRoller from './components/DiceRoller.vue';
 </script>
 
 <template>
-  <div class="grid grid-cols-2 justify-items-center">
-    <h1>Roll the Die</h1>
-    <RollDiceButton />
+  <div class="bg-gray-400 py-2 container-fluid w-full h-screen">
+  <DiceRoller/>
   </div>
 </template>
