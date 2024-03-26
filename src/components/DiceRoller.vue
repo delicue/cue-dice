@@ -11,29 +11,26 @@ let { result, eachDieResult, roll, roll_history } = useDice()
 </script>
 
 <template>
-    <h1 class="text-center my-2">Roll the Dice</h1>
-    <div class="text-center mx-auto container border shadow rounded bg-gray-800 p-2">
-        <div class="rounded p-2 m-3 bg-gray-400 ">
-            <label for="diceAmount" class="text-white">
+    <div class="text-center my-4 mx-auto container border border-slate-50 shadow-2xl rounded p-4 flex flex-wrap gap-4">
+        <!--Dice Rolling Card-->
+        <div class="p-4 m-3 flex-col basis-1/2 self-center border shadow inline-flex mx-auto rounded-md">
+            <label for="diceAmount">
                 <h2>Amount of Dice</h2>
+                <input class="text-center rounded border mx-2" id="diceAmount" name="diceAmount" type="number"
+                    v-model="diceAmount">
             </label>
-            <input class="text-center text-black rounded" id="diceAmount" name="diceAmount" type="number"
-                v-model="diceAmount">
-        </div>
-        <div class="rounded p-4 m-2 bg-gray-100 text-black content-center">
             <label for="diceAmount" class="text-black">
                 <h2>Sides</h2>
+                <input class="text-center rounded border mx-2" id="sides" name="sides" type="number" v-model="sides">
             </label>
-            <input class="bg-white text-center" id="sides" name="sides" type="number" v-model="sides">
+            <input
+                class="text-gray-50 text-2xl bg-slate-600 hover:bg-transparent hover:text-black active:bg-slate-800 active:text-gray-200 px-4 py-2 my-2 border rounded-md"
+                type="button" role="button" name="rollDiceButton" @click="roll(diceAmount, sides, speed)"
+                :value="diceAmount + 'd' + sides">
         </div>
-        <button
-            class=" bg-slate-700 hover:bg-transparent active:bg-white active:text-gray-50 px-4 py-2 my-2 shadow border-2 rounded"
-            type="button" name="rollDiceButton" @click="roll(diceAmount, sides, speed)">Roll {{ diceAmount }}d{{
-            sides }}
-        </button>
         <div
-            class="container mx-auto max-w-sm p-6 my-2 border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ result }}</h5>
+            class="container mx-auto flex-col basis-1/2 max-w-sm p-4 self-center my-2 border border-gray-200 rounded-md shadow hover:bg-gray-100">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight">{{ result }}</h5>
             <p class="font-normal text-gray-700 dark:text-gray-400">{{ eachDieResult }}</p>
         </div>
 

@@ -1,9 +1,9 @@
 <script setup>
 import DiceRoller from './components/DiceRoller.vue';
+import Header from './Header.vue';
 </script>
 
 <template>
-  <div class="bg-gray-400 py-2 container-fluid w-full h-screen">
-  <DiceRoller/>
-  </div>
+  <Header />
+  <DiceRoller />
 </template>
