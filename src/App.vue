@@ -4,6 +4,8 @@ import Header from './Header.vue';
 </script>
 
 <template>
-  <Header />
-  <DiceRoller />
+  <div class=" h-screen bg-black">
+    <Header />
+    <DiceRoller />
+  </div>
 </template>
