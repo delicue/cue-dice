@@ -7,7 +7,7 @@ export default function useDice() {
     let roll_history = ref<RollRecordInterface[]>([])
     let id = 0
 
-    let roll = async (diceAmount: number, sides: number, speed: number = 1) => {
+    let roll = (diceAmount: number, sides: number, speed: number = 1) => {
         //reset result value each time the operation is executed.
         result.value = 0
         eachDieResult.value = []
@@ -34,9 +34,10 @@ export default function useDice() {
 
             /**
              * If the die result is greater than the amount of sides (due to decimals), roll to 1
-             * Ex: 1d6, result: 6.7, 6.7 % 6 == 
+             * Ex: 1d6, result: 6.7 => 6.7 % 6 1
              */
             const die_result = (current_side > sides) ? (current_side % sides) : (current_side)
+            console.log(die_result)
             eachDieResult.value.push(die_result)
             //round to the nearest side
             result.value += die_result
