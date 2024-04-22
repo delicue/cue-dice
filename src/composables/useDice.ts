@@ -4,7 +4,7 @@ import { RollRecordInterface } from "../components/interfaces/RollRecordInterfac
 export default function useDice() {
     let result = ref<number>(0)
     let eachDieResult = ref<number[]>([])
-    let roll_history = ref<RollRecordInterface[]>([])
+    let rollHistory = ref<RollRecordInterface[]>([])
     let id = 0
 
     let roll = (diceAmount: number, sides: number, speed: number = 1) => {
@@ -45,12 +45,12 @@ export default function useDice() {
         ++id
 
         //add to roll_history
-        roll_history.value.unshift(<RollRecordInterface>{
+        rollHistory.value.unshift(<RollRecordInterface>{
             id: "#" + id,
             eachDieResult: eachDieResult.value,
             finalResult: result.value
         })
     }
 
-    return { result, eachDieResult, roll, roll_history }
+    return { result, eachDieResult, roll, rollHistory }
 }

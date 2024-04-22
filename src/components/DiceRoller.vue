@@ -7,7 +7,7 @@ import useButtonEffects from '../composables/useButtonEffects';
 const diceAmount = ref(1)
 const sides = ref(6)
 const speed = ref(10)
-let { result, eachDieResult, roll, roll_history: rollHistory } = useDice()
+let { result, eachDieResult, roll, rollHistory } = useDice()
 let { startButtonRepeat, stopButtonRepeat } = useButtonEffects()
 
 const decrementDice = () => {
@@ -38,7 +38,11 @@ const reset = () => {
     result.value = 0
     eachDieResult.value = []
 }
-
+/*RollHistory emitting @clear-history. Must be done on this level due to seeming immutability when passed into RollHistory*/
+const clearHistory = () => {
+    while (rollHistory.value.length > 0)
+        rollHistory.value.pop()
+}
 const showHistory = ref(true)
 </script>
 
@@ -86,16 +90,17 @@ const showHistory = ref(true)
                     </div>
                 </label>
 
-                <!-----------------------------Roll Button-------------------------------------------->
-                <div class="sm:grid sm:grid-cols-2">
+                <!-----------------------------Roll and Reset buttons-------------------------------------------->
+                <div class="sm:grid sm:grid-cols-2 gap-2">
+                    <!--Roll-->
                     <input
-                        class="bg-gray-800 hover:animate-pulse text-2xl hover:bg-slate-400 hover:text-black active:bg-slate-400 active:text-gray-300 px-4 py-2 my-2 shadow-2xl rounded-md"
+                        class="bg-gray-800 hover:animate-pulse text-2xl hover:bg-slate-400 hover:text-black active:bg-slate-400 active:text-gray-300 px-4 py-2 my-2 shadow-2xl rounded-md mx-1"
                         type="button" role="button" name="rollDiceButton" @click="roll(diceAmount, sides, speed)"
                         :value="'Roll ' + diceAmount + 'd' + sides">
+                    <!--Reset-->
                     <input
-                        class="bg-gray-800 hover:animate-pulse text-2xl hover:bg-slate-400 hover:text-black active:bg-slate-400 active:text-gray-300 px-4 py-2 my-2 shadow-2xl rounded-md"
-                        type="button" role="button" name="resetButton" @click="reset"
-                        value="Reset">
+                        class="text-stone-200 mx-1 from-slate-500 to-stone-500 bg-gradient-to-tl hover:animate-pulse text-2xl hover:bg-slate-400 hover:text-black active:bg-slate-400 active:text-gray-300 px-4 py-2 my-2 shadow-2xl rounded-md"
+                        type="button" role="button" name="resetButton" @click="reset" value="Reset">
                 </div>
 
                 <!-----------------------------Result Box--------------------------------------------------->
@@ -110,15 +115,12 @@ const showHistory = ref(true)
             </div>
         </div>
         <button
-            class="text-gray-900 transition ease-in-out delay-300 rounded p-4 basis-1/12 self-start my-4 container mx-auto sm:mx-2 lg:mx-4 hover:opacity-85 hover:animate-pulse active:bg-slate-200 active:text-gray-800 active:outline-2"
-            :class="showHistory? 'bg-red-400':'bg-emerald-400'" @click="showHistory = !showHistory">
+            class="text-gray-900 rounded p-4 basis-1/12 self-start my-4 grid mx-auto lg:mx-4 hover:opacity-85 hover:animate-pulse active:bg-slate-200 active:text-gray-800 active:outline-2"
+            :class="showHistory? 'bg-red-400':'bg-emerald-300'" @click="showHistory = !showHistory">
             {{ showHistory ? 'Hide History' : 'Show History' }}
-            <span class="hover:animate-spin">
-                {{ showHistory ? '→': '←' }}
-            </span>
         </button>
         <Transition name="slide-fade">
-            <RollHistory v-show="showHistory" v-model="rollHistory" class="basis-3/12" />
+            <RollHistory v-show="showHistory" v-model="rollHistory" @clear-history="clearHistory" class="basis-3/12" />
         </Transition>
     </div>
 </template>
