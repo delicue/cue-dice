@@ -1,5 +1,6 @@
 <script setup>
 import DiceRoller from './components/DiceRoller.vue';
+import Footer from './Footer.vue';
 import Header from './Header.vue';
 </script>
 

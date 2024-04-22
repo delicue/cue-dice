@@ -2,7 +2,7 @@
 
 </script>
 <template>
-    <header class="text-2xl bg-gray-700 text-gray-50 py-4 px-2 shadow-2xl">
+    <header class="text-2xl bg-gray-700 text-gray-50 py-4 px-2 shadow container-fluid sticky top-0">
         <h1 class="px-2 text-center text-amber-300">CueDice
             <span>
                 <small class="float-right text-sm">by Delicue</small>
