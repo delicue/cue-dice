@@ -108,7 +108,6 @@ const showHistory = ref(true)
                     class="h-1/3 p-4 mx-auto my-2 bg-gray-800 border-gray-800 border rounded-md shadow overflow-y-scroll overscroll-contain">
                     <h5 class="mb-2 text-2xl font-bold">{{ result }}</h5>
                     <p class="font-normal text-gray-700 dark:text-gray-400">
-                        <!-- {{ eachDieResult.length > 0 ? eachDieResult : ""}} -->
                         {{ eachDieResult }}
                     </p>
                 </div>
